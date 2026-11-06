@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DirectOrder - 0% Commission Direct Restaurant Web App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  </style>
+</head>
+<body class="bg-stone-900 text-stone-100 min-h-screen pb-28">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-2 text-center text-xs font-semibold text-white tracking-wide flex justify-center items-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-white animate-ping"></span>
+    DIRECT RESTAURANT ORDERING: 0% PLATFORM COMMISSION (SAVE 30% ON SWIGGY/ZOMATO)
+  </div>
+
+  <!-- Header -->
+  <header class="bg-stone-950 border-b border-stone-800 sticky top-0 z-30 px-4 py-3 flex justify-between items-center shadow-lg">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-lg">
+        BR
+      </div>
+      <div>
+        <h1 class="text-sm font-bold text-white leading-tight">The Artisan Kitchen & Cafe</h1>
+        <p class="text-[11px] text-emerald-400 font-medium">● Open for Direct Delivery & Pickup</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="text-xs bg-stone-800 text-stone-300 px-3 py-1 rounded-full border border-stone-700">Chennai / Bangalore</span>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <div class="max-w-xl mx-auto px-4 pt-4">
+    <div class="bg-gradient-to-br from-stone-800 to-stone-900 border border-stone-700/80 rounded-3xl p-5 shadow-2xl relative overflow-hidden">
+      <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
+      <div class="relative z-10">
+        <span class="text-[10px] font-bold tracking-wider uppercase text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">Direct VIP Discount</span>
+        <h2 class="text-lg font-black text-white mt-2">Get 15% Off Your Direct Order</h2>
+        <p class="text-xs text-stone-400 mt-1">Skip middleman delivery markups. 100% of your bill supports our local chefs and staff directly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Categories -->
+  <div class="max-w-xl mx-auto px-4 mt-5">
+    <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none text-xs font-semibold">
+      <button class="bg-amber-500 text-stone-950 px-4 py-2 rounded-xl whitespace-nowrap shadow-md">All Items</button>
+      <button class="bg-stone-800 hover:bg-stone-700 text-stone-300 px-4 py-2 rounded-xl whitespace-nowrap border border-stone-700">Artisan Sourdough</button>
+      <button class="bg-stone-800 hover:bg-stone-700 text-stone-300 px-4 py-2 rounded-xl whitespace-nowrap border border-stone-700">Woodfired Pizzas</button>
+      <button class="bg-stone-800 hover:bg-stone-700 text-stone-300 px-4 py-2 rounded-xl whitespace-nowrap border border-stone-700">Cold Brew & Specialty</button>
+    </div>
+  </div>
+
+  <!-- Items Feed -->
+  <main class="max-w-xl mx-auto px-4 mt-4 space-y-3">
+    <!-- Item 1 -->
+    <div class="bg-stone-950 border border-stone-800/80 rounded-2xl p-4 flex gap-4 items-center shadow-md">
+      <div class="w-20 h-20 rounded-xl bg-amber-950/40 border border-amber-500/20 flex-shrink-0 flex items-center justify-center text-3xl">
+        🍞
+      </div>
+      <div class="flex-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <h3 class="text-sm font-bold text-white">Classic Country Sourdough Loaf</h3>
+        </div>
+        <p class="text-xs text-stone-400 mt-1 line-clamp-2">Naturally fermented 36 hours. Wild yeast, unbleached grain, crispy caramelized crust.</p>
+        <div class="flex justify-between items-center mt-3">
+          <span class="font-mono text-sm font-bold text-emerald-400">₹280</span>
+          <button onclick="addToCart('Country Sourdough', 280)" class="bg-stone-800 hover:bg-stone-700 text-amber-400 border border-amber-500/30 px-4 py-1.5 rounded-xl text-xs font-bold transition active:scale-95">
+            + Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="bg-stone-950 border border-stone-800/80 rounded-2xl p-4 flex gap-4 items-center shadow-md">
+      <div class="w-20 h-20 rounded-xl bg-red-950/40 border border-red-500/20 flex-shrink-0 flex items-center justify-center text-3xl">
+        🍕
+      </div>
+      <div class="flex-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <h3 class="text-sm font-bold text-white">Burrata & Truffle Woodfired Pizza</h3>
+        </div>
+        <p class="text-xs text-stone-400 mt-1 line-clamp-2">San Marzano tomatoes, fresh artisanal burrata cheese, wild mushrooms, white truffle oil.</p>
+        <div class="flex justify-between items-center mt-3">
+          <span class="font-mono text-sm font-bold text-emerald-400">₹590</span>
+          <button onclick="addToCart('Burrata Truffle Pizza', 590)" class="bg-stone-800 hover:bg-stone-700 text-amber-400 border border-amber-500/30 px-4 py-1.5 rounded-xl text-xs font-bold transition active:scale-95">
+            + Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="bg-stone-950 border border-stone-800/80 rounded-2xl p-4 flex gap-4 items-center shadow-md">
+      <div class="w-20 h-20 rounded-xl bg-stone-900 border border-amber-800/30 flex-shrink-0 flex items-center justify-center text-3xl">
+        ☕
+      </div>
+      <div class="flex-1">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <h3 class="text-sm font-bold text-white">Nitro Cold Brew (Estate Single Origin)</h3>
+        </div>
+        <p class="text-xs text-stone-400 mt-1 line-clamp-2">Steeped 20 hours with nitrogen infusion. Velvet creamy head with dark cocoa notes.</p>
+        <div class="flex justify-between items-center mt-3">
+          <span class="font-mono text-sm font-bold text-emerald-400">₹240</span>
+          <button onclick="addToCart('Nitro Cold Brew', 240)" class="bg-stone-800 hover:bg-stone-700 text-amber-400 border border-amber-500/30 px-4 py-1.5 rounded-xl text-xs font-bold transition active:scale-95">
+            + Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom Cart Bar -->
+  <div id="cartBar" class="fixed bottom-0 left-0 w-full bg-stone-950/95 backdrop-blur-md border-t border-stone-800 p-4 z-40 hidden shadow-2xl">
+    <div class="max-w-xl mx-auto flex justify-between items-center">
+      <div>
+        <div id="cartCount" class="text-xs text-stone-400 font-medium">1 item in cart</div>
+        <div id="cartTotal" class="text-lg font-black text-emerald-400 font-mono">₹280</div>
+      </div>
+      <button onclick="openCheckoutModal()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-stone-950 font-black px-6 py-3 rounded-2xl text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-95 transition">
+        <span>Proceed to UPI Checkout</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Checkout & WhatsApp Ticket Modal -->
+  <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-stone-950 border border-stone-800 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-stone-800 pb-3">
+        <div>
+          <h3 class="text-base font-bold text-white">Direct Order & WhatsApp Ticket</h3>
+          <p class="text-xs text-stone-400">Zero commission direct to restaurant</p>
+        </div>
+        <button onclick="closeCheckoutModal()" class="text-stone-400 hover:text-white text-lg">✕</button>
+      </div>
+
+      <!-- Delivery Slot Picker -->
+      <div class="space-y-1.5">
+        <label class="text-xs font-semibold text-stone-300">Choose Delivery / Pickup Slot:</label>
+        <select class="w-full bg-stone-900 border border-stone-800 rounded-xl px-3 py-2 text-xs text-white">
+          <option>Instant Delivery (30-45 mins)</option>
+          <option>Dinner Slot (7:30 PM - 8:30 PM)</option>
+          <option>Tomorrow Morning Breakfast (8:30 AM)</option>
+        </select>
+      </div>
+
+      <!-- Customer Details -->
+      <div class="space-y-2">
+        <input type="text" id="custName" placeholder="Your Name" value="Ravi Kumar" class="w-full bg-stone-900 border border-stone-800 rounded-xl px-3 py-2 text-xs text-white">
+        <input type="tel" id="custPhone" placeholder="WhatsApp Phone Number" value="+91 98400 55555" class="w-full bg-stone-900 border border-stone-800 rounded-xl px-3 py-2 text-xs text-white">
+        <input type="text" id="custAddress" placeholder="Delivery Address / Flat No" value="14, 2nd Main Road, Besant Nagar, Chennai" class="w-full bg-stone-900 border border-stone-800 rounded-xl px-3 py-2 text-xs text-white">
+      </div>
+
+      <!-- Live WhatsApp Ticket Preview -->
+      <div class="bg-emerald-950/30 border border-emerald-500/20 rounded-2xl p-3.5 space-y-1.5">
+        <div class="flex items-center gap-1.5 text-xs text-emerald-400 font-bold">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.97.53 1.961.815 3.031.815 3.177 0 5.764-2.586 5.765-5.766 0-3.18-2.587-5.766-5.765-5.766z"/></svg>
+          Kitchen Dispatch Bot (Simulated)
+        </div>
+        <p class="text-[11px] text-stone-300 font-mono leading-relaxed">
+          Order #AK-1082 confirmed via UPI.<br>
+          Items: Country Sourdough Loaf (x1)<br>
+          Total: ₹280 (0% Swiggy Fee)<br>
+          Slot: Instant Delivery (30-45 mins)<br>
+          Address: Besant Nagar, Chennai
+        </p>
+      </div>
+
+      <!-- Confirm Action -->
+      <button onclick="confirmOrder()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-black py-3 rounded-2xl text-xs shadow-lg shadow-emerald-500/20 transition active:scale-95">
+        Confirm & Send Order via WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      total += price;
+      document.getElementById('cartBar').classList.remove('hidden');
+      document.getElementById('cartCount').innerText = cart.length + (cart.length === 1 ? ' item in cart' : ' items in cart');
+      document.getElementById('cartTotal').innerText = '₹' + total.toLocaleString('en-IN');
+    }
+
+    function openCheckoutModal() {
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    function confirmOrder() {
+      const name = document.getElementById('custName').value;
+      const address = document.getElementById('custAddress').value;
+      const itemsList = cart.map(i => i.name).join(", ");
+      const msg = encodeURIComponent("New Direct Website Order:\nCustomer: " + name + "\nItems: " + itemsList + "\nTotal: ₹" + total + "\nAddress: " + address + "\nStatus: Paid via Direct UPI (0% Commission)");
+      window.open("https://wa.me/917358168884?text=" + msg, "_blank");
+      closeCheckoutModal();
+    }
+  </script>
+</body>
+</html>

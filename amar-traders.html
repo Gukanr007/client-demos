@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amar Traders | B2B Fasteners Digital Catalog & WhatsApp RFQ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0f19; color: #f3f4f6; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .metal-card { background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .metal-card:hover { border-color: rgba(245, 158, 11, 0.5); }
+    .amber-glow { box-shadow: 0 0 25px rgba(245, 158, 11, 0.2); }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 text-white text-xs py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+    <span><strong>Amar Traders Chennai</strong> - Direct Contractor Wholesale B2B Portal & Instant WhatsApp GST Quotes</span>
+    <span class="hidden md:inline bg-black/20 px-2 py-0.5 rounded text-[10px]">HSN: 7318</span>
+  </div>
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div>
+          <h1 class="font-extrabold text-lg tracking-tight text-white flex items-center gap-2">
+            Amar Traders <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Chennai Direct</span>
+          </h1>
+          <p class="text-xs text-slate-400">Industrial Fasteners, Bolts & Nuts Specialists Since 2005</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="tel:+919003212346" class="hidden sm:flex items-center gap-2 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+          <i class="fa-solid fa-phone text-amber-400"></i> +91 90032 12346
+        </a>
+        <button onclick="toggleCartModal()" class="relative flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs px-4 py-2 rounded-lg shadow-lg shadow-emerald-600/20 transition-all">
+          <i class="fa-solid fa-receipt"></i>
+          <span>GST RFQ Cart</span>
+          <span id="cart-badge" class="w-5 h-5 rounded-full bg-white text-emerald-800 text-[11px] font-black flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Pitch Banner -->
+  <section class="max-w-6xl mx-auto px-4 py-6 w-full">
+    <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 rounded-2xl p-6 relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl text-amber-400 pointer-events-none">
+        <i class="fa-solid fa-gears"></i>
+      </div>
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-3">
+          <i class="fa-solid fa-truck-fast"></i> Instant Bulk Quoting for Contractors & Fabricators
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight mb-2">
+          Select Specifications, Calculate Pricing & Get WhatsApp GST Proforma in 10 Seconds.
+        </h2>
+        <p class="text-sm text-slate-300 mb-4">
+          Eliminate hours of manual phone inquiries. Select your required grades, diameters, and quantities below to generate an official WhatsApp quote with full 18% GST itemization.
+        </p>
+        <div class="flex flex-wrap gap-2 text-xs text-slate-400">
+          <span class="bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700"><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> MS, SS304, SS316, HT 8.8/10.9</span>
+          <span class="bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700"><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Foundation, Anchor & Hex Bolts</span>
+          <span class="bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700"><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Automated WhatsApp Dispatch</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="max-w-6xl mx-auto px-4 pb-4 w-full">
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      <button onclick="filterCategory('all')" class="cat-btn active bg-amber-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg whitespace-nowrap transition-all">All Fasteners (8)</button>
+      <button onclick="filterCategory('hex-bolt')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">Hex & MS Bolts</button>
+      <button onclick="filterCategory('foundation')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">Foundation & Anchor Bolts</button>
+      <button onclick="filterCategory('ss-ht')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">SS 304/316 & High Tensile</button>
+      <button onclick="filterCategory('nuts-washers')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">Nuts & Washers</button>
+    </div>
+  </section>
+
+  <!-- Catalog Grid -->
+  <main class="max-w-6xl mx-auto px-4 pb-12 w-full flex-grow">
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Injected by JS -->
+    </div>
+  </main>
+
+  <!-- Cart / Proforma Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-file-invoice"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">GST Proforma Quote Builder</h3>
+            <p class="text-xs text-slate-400">Amar Traders B2B Wholesale Portal</p>
+          </div>
+        </div>
+        <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white text-lg p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div id="cart-items" class="p-4 overflow-y-auto space-y-3 flex-grow max-h-72">
+        <!-- Rendered items -->
+      </div>
+
+      <!-- Bill Breakdown -->
+      <div class="p-4 border-t border-slate-800 bg-slate-950/60 space-y-2">
+        <div class="flex justify-between text-xs text-slate-400">
+          <span>Subtotal (Excl. Tax)</span>
+          <span id="bill-subtotal" class="mono font-semibold text-slate-200">₹0.00</span>
+        </div>
+        <div class="flex justify-between text-xs text-slate-400">
+          <span>GST (18% HSN 7318)</span>
+          <span id="bill-gst" class="mono font-semibold text-slate-200">₹0.00</span>
+        </div>
+        <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-slate-800">
+          <span>Total Proforma Value</span>
+          <span id="bill-total" class="mono text-amber-400 text-base">₹0.00</span>
+        </div>
+
+        <!-- Buyer Info Fields -->
+        <div class="pt-3 grid grid-cols-2 gap-2">
+          <input id="contractor-name" type="text" placeholder="Your Firm / Contractor Name" class="col-span-2 sm:col-span-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+          <input id="contractor-site" type="text" placeholder="Delivery Location / Site (Chennai)" class="col-span-2 sm:col-span-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="pt-2 flex flex-col sm:flex-row gap-2">
+          <button onclick="sendWhatsAppOrder()" class="flex-1 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Submit RFQ on WhatsApp (+91 90032 12346)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Mobile Cart Bar -->
+  <div id="mobile-cart-bar" class="sm:hidden fixed bottom-0 left-0 right-0 bg-slate-900/95 border-t border-slate-800 p-3 flex items-center justify-between z-40 backdrop-blur">
+    <div>
+      <div class="text-[11px] text-slate-400">Total Estimate</div>
+      <div id="mobile-total" class="font-bold text-amber-400 text-sm mono">₹0.00</div>
+    </div>
+    <button onclick="toggleCartModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2">
+      <i class="fa-solid fa-receipt"></i> View Quote (<span id="mobile-count">0</span>)
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500">
+    <p>Custom Digital B2B Architecture for <strong>Amar Traders</strong> (Chennai) • Designed by <strong>Gukan R</strong></p>
+    <p class="mt-1">Fast, zero-latency wholesale quoting engine with instant WhatsApp routing.</p>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: "ms-bolt",
+        name: "MS (Mild Steel) Hex Bolt",
+        category: "hex-bolt",
+        grade: "Grade 4.6 / IS 1363",
+        unit: "piece",
+        basePrice: 8.50,
+        hsn: "7318",
+        specs: ["M8 x 40mm", "M10 x 50mm", "M12 x 65mm", "M16 x 80mm", "M20 x 100mm"],
+        defaultQty: 500,
+        img: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=400&q=80"
+      },
+      {
+        id: "l-foundation",
+        name: "L-Type Foundation Bolt",
+        category: "foundation",
+        grade: "IS 2062 / Heavy Structural",
+        unit: "piece",
+        basePrice: 145.00,
+        hsn: "7318",
+        specs: ["16mm x 300mm", "20mm x 450mm", "24mm x 600mm", "30mm x 750mm"],
+        defaultQty: 50,
+        img: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=400&q=80"
+      },
+      {
+        id: "ht-bolt",
+        name: "High Tensile (HT) Bolt",
+        category: "ss-ht",
+        grade: "Grade 8.8 / 10.9 Heavy Hex",
+        unit: "piece",
+        basePrice: 22.00,
+        hsn: "7318",
+        specs: ["M10 x 45mm Gr 8.8", "M12 x 50mm Gr 8.8", "M16 x 75mm Gr 10.9", "M20 x 90mm Gr 10.9"],
+        defaultQty: 250,
+        img: "https://images.unsplash.com/photo-1618090584176-7132b9911657?w=400&q=80"
+      },
+      {
+        id: "ss-bolt",
+        name: "SS 304 / 316 Stainless Bolt",
+        category: "ss-ht",
+        grade: "AISI 304 / 316 Marine Grade",
+        unit: "piece",
+        basePrice: 38.00,
+        hsn: "7318",
+        specs: ["M6 x 25mm SS304", "M8 x 40mm SS304", "M10 x 50mm SS316", "M12 x 65mm SS316"],
+        defaultQty: 100,
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=400&q=80"
+      },
+      {
+        id: "allen-bolt",
+        name: "Socket Head Allen Cap Bolt",
+        category: "hex-bolt",
+        grade: "Grade 12.9 High Precision",
+        unit: "piece",
+        basePrice: 16.50,
+        hsn: "7318",
+        specs: ["M6 x 20mm", "M8 x 30mm", "M10 x 40mm", "M12 x 50mm"],
+        defaultQty: 200,
+        img: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f3?w=400&q=80"
+      },
+      {
+        id: "anchor-bolt",
+        name: "Wedge Expansion Anchor Bolt",
+        category: "foundation",
+        grade: "Heavy Duty Concrete Anchor",
+        unit: "piece",
+        basePrice: 32.00,
+        hsn: "7318",
+        specs: ["M10 x 75mm", "M12 x 100mm", "M16 x 125mm", "M20 x 160mm"],
+        defaultQty: 100,
+        img: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=400&q=80"
+      },
+      {
+        id: "hex-nut",
+        name: "Heavy Hex Nuts (MS & HT)",
+        category: "nuts-washers",
+        grade: "IS 1364 / Grade 8 & 10",
+        unit: "piece",
+        basePrice: 4.20,
+        hsn: "7318",
+        specs: ["M8 Hex Nut", "M10 Hex Nut", "M12 Hex Nut", "M16 Heavy Nut", "M20 Heavy Nut"],
+        defaultQty: 1000,
+        img: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400&q=80"
+      },
+      {
+        id: "spring-washer",
+        name: "Spring & Plain Washers",
+        category: "nuts-washers",
+        grade: "IS 3063 / High Spring Steel",
+        unit: "kg",
+        basePrice: 185.00,
+        hsn: "7318",
+        specs: ["Plain Washer M10 (1kg)", "Plain Washer M12 (1kg)", "Spring Washer M10 (1kg)", "Spring Washer M16 (1kg)"],
+        defaultQty: 10,
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80"
+      }
+    ];
+
+    let cart = [];
+
+    function renderProducts(items) {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = items.map(p => `
+        <div class="metal-card rounded-xl p-4 flex flex-col justify-between transition-all duration-200">
+          <div>
+            <div class="relative rounded-lg overflow-hidden h-32 mb-3 bg-slate-800">
+              <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+              <span class="absolute top-2 left-2 bg-slate-950/80 text-amber-400 font-mono text-[10px] font-bold px-2 py-0.5 rounded border border-amber-500/20">
+                ${p.grade}
+              </span>
+            </div>
+            <h3 class="font-bold text-white text-sm tracking-tight mb-1">${p.name}</h3>
+            <p class="text-[11px] text-slate-400 mb-2">Est. Wholesale: <strong class="text-amber-400 mono">₹${p.basePrice.toFixed(2)}</strong> / ${p.unit}</p>
+
+            <div class="space-y-2 mb-3">
+              <div>
+                <label class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Size / Spec:</label>
+                <select id="spec-${p.id}" class="w-full bg-slate-900 border border-slate-700 rounded-md text-xs py-1.5 px-2 text-slate-200 focus:outline-none focus:border-amber-500">
+                  ${p.specs.map(s => `<option value="${s}">${s}</option>`).join('')}
+                </select>
+              </div>
+              <div>
+                <label class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Quantity (${p.unit}s):</label>
+                <input id="qty-${p.id}" type="number" min="1" value="${p.defaultQty}" class="w-full bg-slate-900 border border-slate-700 rounded-md text-xs py-1.5 px-2 text-slate-200 mono font-bold focus:outline-none focus:border-amber-500">
+              </div>
+            </div>
+          </div>
+
+          <button onclick="addToCart('${p.id}')" class="w-full bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-bold text-xs py-2 rounded-lg border border-slate-700 hover:border-amber-500 transition-all flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-[10px]"></i> Add to RFQ
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.remove('bg-amber-500', 'text-slate-950', 'active');
+        b.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-amber-500', 'text-slate-950', 'active');
+
+      if (cat === 'all') {
+        renderProducts(products);
+      } else {
+        renderProducts(products.filter(p => p.category === cat));
+      }
+    }
+
+    function addToCart(productId) {
+      const p = products.find(x => x.id === productId);
+      const spec = document.getElementById(`spec-${productId}`).value;
+      const qty = parseInt(document.getElementById(`qty-${productId}`).value) || 1;
+
+      const existing = cart.find(item => item.id === productId && item.spec === spec);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({
+          id: p.id,
+          name: p.name,
+          spec: spec,
+          qty: qty,
+          unit: p.unit,
+          unitPrice: p.basePrice,
+          total: qty * p.basePrice
+        });
+      }
+
+      updateCartUI();
+      // small feedback animation
+      toggleCartModal(true);
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+      document.getElementById('cart-badge').textContent = cart.length;
+      document.getElementById('mobile-count').textContent = cart.length;
+
+      const subtotal = cart.reduce((acc, item) => acc + (item.qty * item.unitPrice), 0);
+      const gst = subtotal * 0.18;
+      const grandTotal = subtotal + gst;
+
+      document.getElementById('bill-subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+      document.getElementById('bill-gst').textContent = '₹' + gst.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+      document.getElementById('bill-total').textContent = '₹' + grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+      document.getElementById('mobile-total').textContent = '₹' + grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+
+      const container = document.getElementById('cart-items');
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-slate-500 text-xs">
+            <i class="fa-solid fa-box-open text-3xl mb-2 block"></i>
+            Your quotation cart is empty. Select fasteners from the catalog above.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cart.map((item, idx) => `
+        <div class="bg-slate-800/80 border border-slate-700 p-2.5 rounded-lg flex items-center justify-between text-xs">
+          <div>
+            <div class="font-bold text-white">${item.name}</div>
+            <div class="text-[11px] text-amber-400 font-mono">${item.spec} &bull; ${item.qty} ${item.unit}s @ ₹${item.unitPrice.toFixed(2)}</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="font-bold mono text-slate-200">₹${(item.qty * item.unitPrice).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
+            <button onclick="removeFromCart(${idx})" class="text-red-400 hover:text-red-300 p-1">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleCartModal(forceOpen = false) {
+      const modal = document.getElementById('cart-modal');
+      if (forceOpen) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.toggle('hidden');
+      }
+    }
+
+    function sendWhatsAppOrder() {
+      if (cart.length === 0) {
+        alert("Please add at least one fastener item to generate quotation.");
+        return;
+      }
+
+      const contractor = document.getElementById('contractor-name').value.trim() || "Contractor Inquiry";
+      const site = document.getElementById('contractor-site').value.trim() || "Chennai";
+
+      const subtotal = cart.reduce((acc, item) => acc + (item.qty * item.unitPrice), 0);
+      const gst = subtotal * 0.18;
+      const total = subtotal + gst;
+
+      let msg = `*RFQ / WHOLESALE ORDER - AMAR TRADERS CHENNAI*\n`;
+      msg += `Firm / Buyer: ${contractor}\n`;
+      msg += `Delivery Site: ${site}\n`;
+      msg += `------------------------------------\n`;
+      cart.forEach((c, i) => {
+        msg += `${i+1}. ${c.name} (${c.spec})\n   Qty: ${c.qty} ${c.unit}s @ ₹${c.unitPrice.toFixed(2)} = ₹${(c.qty * c.unitPrice).toFixed(2)}\n`;
+      });
+      msg += `------------------------------------\n`;
+      msg += `Subtotal: ₹${subtotal.toFixed(2)}\n`;
+      msg += `GST (18% HSN 7318): ₹${gst.toFixed(2)}\n`;
+      msg += `*Estimated Proforma Total: ₹${total.toFixed(2)}*\n`;
+      msg += `------------------------------------\n`;
+      msg += `Please confirm stock availability, delivery schedule, and official proforma invoice.`;
+
+      const targetPhone = "919003212346"; // Amar Traders
+      const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`;
+      window.open(waUrl, '_blank');
+    }
+
+    // Initial render
+    renderProducts(products);
+    updateCartUI();
+  </script>
+</body>
+</html>
