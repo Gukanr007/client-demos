@@ -1,197 +1,390 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amar Traders | B2B Fasteners Digital Catalog & WhatsApp RFQ</title>
+  <title>Amar Traders &bull; B2B Fasteners Wholesale Portal &amp; GST Quotation</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Manrope Font (Single approved typeface) & JetBrains Mono for numeric UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons (Approved icon family) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            surface: {
+              base: '#000000',
+              card: '#181818',
+              elevated: '#1F1F1F',
+              stroke: '#272727',
+              highlight: '#313131',
+            },
+            accent: {
+              amber: '#F59E0B',
+              emerald: '#10B981',
+            }
+          },
+          transitionTimingFunction: {
+            'apple': 'cubic-bezier(0.22, 1, 0.36, 1)',
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0f19; color: #f3f4f6; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-    .metal-card { background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%); border: 1px solid rgba(255, 255, 255, 0.08); }
-    .metal-card:hover { border-color: rgba(245, 158, 11, 0.5); }
-    .amber-glow { box-shadow: 0 0 25px rgba(245, 158, 11, 0.2); }
+    /* Strict Design Rules from ai-design-skills */
+    body {
+      background-color: #000000;
+      color: #FFFFFF;
+      font-family: 'Manrope', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    
+    /* Text wrapping rules: balance for headings, pretty for body */
+    h1, h2, h3, h4, h5, h6 {
+      text-wrap: balance;
+    }
+    p, span, li {
+      text-wrap: pretty;
+    }
+
+    /* Hero Heading Text Gradient (Allowed only on text, never background) */
+    .hero-heading-gradient {
+      background: linear-gradient(180deg, #FFFFFF 0%, #9B9B9B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Base curve transition utility */
+    .transition-base {
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      transition-duration: 300ms;
+    }
+
+    /* Tagline word reveal styling */
+    .reveal-word {
+      transition: color 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0.3;
+      color: #9B9B9B;
+    }
+    .reveal-word.active {
+      opacity: 1;
+      color: #FFFFFF;
+    }
+
+    /* Nested radius helper */
+    .card-outer {
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .card-inner {
+      border-radius: 8px; /* 16px outer - 16px gap / 2 = 8px */
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500/30 selection:text-amber-200">
 
-  <!-- Top Announcement Bar -->
-  <div class="bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 text-white text-xs py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
-    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-    <span><strong>Amar Traders Chennai</strong> - Direct Contractor Wholesale B2B Portal & Instant WhatsApp GST Quotes</span>
-    <span class="hidden md:inline bg-black/20 px-2 py-0.5 rounded text-[10px]">HSN: 7318</span>
-  </div>
-
-  <!-- Header -->
-  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-amber-500/20">
-          <i class="fa-solid fa-bolt"></i>
+  <!-- Floating Apple-Style Navigation Bar (B7) -->
+  <nav class="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <div class="pointer-events-auto max-w-4xl w-full bg-[#181818]/80 backdrop-blur-xl border border-[#272727] rounded-full px-4 py-2 flex items-center justify-between shadow-2xl transition-base">
+      
+      <!-- Brand Logo / Identity -->
+      <a href="#hero" class="flex items-center gap-2.5 group">
+        <div class="w-8 h-8 rounded-full bg-[#272727] flex items-center justify-center text-amber-400 group-hover:bg-amber-500 group-hover:text-black transition-base">
+          <i class="ph ph-nut text-lg"></i>
         </div>
         <div>
-          <h1 class="font-extrabold text-lg tracking-tight text-white flex items-center gap-2">
-            Amar Traders <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Chennai Direct</span>
-          </h1>
-          <p class="text-xs text-slate-400">Industrial Fasteners, Bolts & Nuts Specialists Since 2005</p>
+          <span class="text-sm font-bold tracking-tight text-white flex items-center gap-1.5">
+            Amar Traders
+            <span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#272727] text-neutral-300 border border-neutral-700">Chennai Direct</span>
+          </span>
         </div>
+      </a>
+
+      <!-- Quick Nav Links (Desktop) -->
+      <div class="hidden md:flex items-center gap-6 text-xs font-medium text-neutral-300">
+        <a href="#catalog" class="hover:text-white transition-base">Fasteners Catalog</a>
+        <a href="#standards" class="hover:text-white transition-base">IS &amp; DIN Standards</a>
+        <a href="#tagline" class="hover:text-white transition-base">How It Works</a>
+        <a href="#faq" class="hover:text-white transition-base">FAQ</a>
       </div>
-      <div class="flex items-center gap-3">
-        <a href="tel:+919003212346" class="hidden sm:flex items-center gap-2 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
-          <i class="fa-solid fa-phone text-amber-400"></i> +91 90032 12346
-        </a>
-        <button onclick="toggleCartModal()" class="relative flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs px-4 py-2 rounded-lg shadow-lg shadow-emerald-600/20 transition-all">
-          <i class="fa-solid fa-receipt"></i>
+
+      <!-- Action Button / Cart Trigger -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleCartModal(true)" class="relative flex items-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white text-xs font-semibold px-3 py-2 rounded-full transition-base active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50">
+          <i class="ph ph-receipt text-sm"></i>
           <span>GST RFQ Cart</span>
-          <span id="cart-badge" class="w-5 h-5 rounded-full bg-white text-emerald-800 text-[11px] font-black flex items-center justify-center">0</span>
+          <span id="cart-counter" class="w-5 h-5 rounded-full bg-black/40 text-white text-[11px] font-mono font-bold flex items-center justify-center">0</span>
         </button>
       </div>
+
     </div>
+  </nav>
+
+  <!-- Hero Section (B5) -->
+  <header id="hero" class="pt-32 pb-16 px-4 max-w-5xl mx-auto w-full text-center flex flex-col items-center">
+    
+    <!-- Verified Badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#181818] border border-[#272727] text-xs font-medium text-neutral-300 mb-6 transition-base hover:border-neutral-600">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span>Wholesale Fasteners &bull; Direct Manufacturer Supply &bull; Chennai</span>
+    </div>
+
+    <!-- Hero Heading (Strict 680px max width, Left-to-Right Text Gradient) -->
+    <h1 class="hero-heading-gradient text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-[680px] leading-[1.1] mb-6">
+      Precision fasteners for contractors<br>without the quote wait
+    </h1>
+
+    <!-- Subheading (Strict 680px max width, Body 1 style) -->
+    <p class="text-base sm:text-lg text-neutral-400 max-w-[680px] leading-relaxed mb-8">
+      Select required grades, bolt diameters, and batch quantities directly from Amar Traders inventory. Generate an official GST proforma quotation in seconds.
+    </p>
+
+    <!-- CTAs & Proof Row -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-12">
+      <a href="#catalog" class="inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#D97706] text-black text-sm font-semibold px-4 py-2 rounded-full transition-base active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">
+        <i class="ph ph-magnifying-glass text-base"></i>
+        <span>Browse 8 Core Lines</span>
+      </a>
+      <a href="tel:+919003212346" class="inline-flex items-center gap-2 bg-[#181818] hover:bg-[#272727] text-neutral-200 text-sm font-medium px-4 py-2 rounded-full border border-[#272727] transition-base active:scale-[0.98]">
+        <i class="ph ph-phone-call text-base text-amber-400"></i>
+        <span>+91 90032 12346</span>
+      </a>
+    </div>
+
+    <!-- Proof Strip -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl w-full text-left">
+      <div class="bg-[#181818] border border-[#272727] rounded-xl p-3">
+        <div class="text-[11px] font-medium text-neutral-400">Inventory Standards</div>
+        <div class="text-sm font-semibold text-white mt-0.5">IS 1363 &bull; DIN 912 &bull; IS 2062</div>
+      </div>
+      <div class="bg-[#181818] border border-[#272727] rounded-xl p-3">
+        <div class="text-[11px] font-medium text-neutral-400">HSN Classification</div>
+        <div class="text-sm font-semibold text-white mt-0.5">HSN 7318 (18% GST)</div>
+      </div>
+      <div class="bg-[#181818] border border-[#272727] rounded-xl p-3">
+        <div class="text-[11px] font-medium text-neutral-400">Dispatch Speed</div>
+        <div class="text-sm font-semibold text-white mt-0.5">24hr Ex-Stock Chennai</div>
+      </div>
+      <div class="bg-[#181818] border border-[#272727] rounded-xl p-3">
+        <div class="text-[11px] font-medium text-neutral-400">Contractor Testing</div>
+        <div class="text-sm font-semibold text-white mt-0.5">Mill Test Certificate (MTC)</div>
+      </div>
+    </div>
+
   </header>
 
-  <!-- Hero Pitch Banner -->
-  <section class="max-w-6xl mx-auto px-4 py-6 w-full">
-    <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-slate-700/60 rounded-2xl p-6 relative overflow-hidden">
-      <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl text-amber-400 pointer-events-none">
-        <i class="fa-solid fa-gears"></i>
-      </div>
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-3">
-          <i class="fa-solid fa-truck-fast"></i> Instant Bulk Quoting for Contractors & Fabricators
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight mb-2">
-          Select Specifications, Calculate Pricing & Get WhatsApp GST Proforma in 10 Seconds.
-        </h2>
-        <p class="text-sm text-slate-300 mb-4">
-          Eliminate hours of manual phone inquiries. Select your required grades, diameters, and quantities below to generate an official WhatsApp quote with full 18% GST itemization.
-        </p>
-        <div class="flex flex-wrap gap-2 text-xs text-slate-400">
-          <span class="bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700"><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> MS, SS304, SS316, HT 8.8/10.9</span>
-          <span class="bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700"><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Foundation, Anchor & Hex Bolts</span>
-          <span class="bg-slate-800/80 px-2.5 py-1 rounded-md border border-slate-700"><i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Automated WhatsApp Dispatch</span>
-        </div>
-      </div>
+  <!-- Mandatory Tagline Reveal Section (B11) -->
+  <section id="tagline" class="py-24 px-4 max-w-4xl mx-auto w-full text-center">
+    <div class="text-xs uppercase tracking-wider font-semibold text-amber-400 mb-4">
+      Modern Fastener Supply
     </div>
+    <h2 id="reveal-text" class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight max-w-[720px] mx-auto leading-snug">
+      Contractors need firm price transparency on site, not endless phone callbacks and delayed estimation sheets.
+    </h2>
+    <p class="text-sm text-neutral-400 mt-4 max-w-md mx-auto">
+      Every specification below reflects real wholesale inventory ready for bulk dispatch across Tamil Nadu and South India.
+    </p>
   </section>
 
-  <!-- Category Filter -->
-  <section class="max-w-6xl mx-auto px-4 pb-4 w-full">
+  <!-- Category Selection (Flat Surfaces, Spacing Tokens) -->
+  <section id="catalog" class="max-w-6xl mx-auto px-4 pb-4 w-full">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h3 class="text-xl font-bold tracking-tight text-white">Wholesale Fastener Catalog</h3>
+        <p class="text-xs text-neutral-400">Configure your order, view itemized unit prices, and calculate GST instantly</p>
+      </div>
+      <span class="text-xs font-mono text-neutral-500">Live Inventory Ready</span>
+    </div>
+
+    <!-- Filter Buttons (Pill design, flat #181818 surface) -->
     <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-      <button onclick="filterCategory('all')" class="cat-btn active bg-amber-500 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg whitespace-nowrap transition-all">All Fasteners (8)</button>
-      <button onclick="filterCategory('hex-bolt')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">Hex & MS Bolts</button>
-      <button onclick="filterCategory('foundation')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">Foundation & Anchor Bolts</button>
-      <button onclick="filterCategory('ss-ht')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">SS 304/316 & High Tensile</button>
-      <button onclick="filterCategory('nuts-washers')" class="cat-btn bg-slate-800 text-slate-300 hover:text-white font-medium text-xs px-4 py-2 rounded-lg border border-slate-700 whitespace-nowrap transition-all">Nuts & Washers</button>
+      <button onclick="filterItems('all')" class="cat-pill active bg-[#F59E0B] text-black font-semibold text-xs px-3.5 py-1.5 rounded-full transition-base">All Fasteners (8)</button>
+      <button onclick="filterItems('hex')" class="cat-pill bg-[#181818] hover:bg-[#272727] text-neutral-300 font-medium text-xs px-3.5 py-1.5 rounded-full border border-[#272727] transition-base">Mild Steel &amp; Hex Bolts</button>
+      <button onclick="filterItems('foundation')" class="cat-pill bg-[#181818] hover:bg-[#272727] text-neutral-300 font-medium text-xs px-3.5 py-1.5 rounded-full border border-[#272727] transition-base">Foundation &amp; Anchor</button>
+      <button onclick="filterItems('ss-ht')" class="cat-pill bg-[#181818] hover:bg-[#272727] text-neutral-300 font-medium text-xs px-3.5 py-1.5 rounded-full border border-[#272727] transition-base">SS 304/316 &amp; High Tensile</button>
+      <button onclick="filterItems('hardware')" class="cat-pill bg-[#181818] hover:bg-[#272727] text-neutral-300 font-medium text-xs px-3.5 py-1.5 rounded-full border border-[#272727] transition-base">Heavy Nuts &amp; Washers</button>
     </div>
   </section>
 
-  <!-- Catalog Grid -->
-  <main class="max-w-6xl mx-auto px-4 pb-12 w-full flex-grow">
-    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Injected by JS -->
+  <!-- Product Grid (Strict Nested Radii, Apple Depth, Flat Surfaces) -->
+  <main class="max-w-6xl mx-auto px-4 pb-20 w-full flex-grow">
+    <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Injected by JavaScript -->
     </div>
   </main>
 
-  <!-- Cart / Proforma Modal -->
-  <div id="cart-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+  <!-- Standards & Benefits Section -->
+  <section id="standards" class="py-16 px-4 bg-[#181818] border-y border-[#272727]">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">Engineered to National Quality Benchmarks</h3>
+        <p class="text-sm text-neutral-400">Amar Traders supplies critical infrastructure projects, solar installations, PEB structures, and automotive fabricators.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-[#1F1F1F] border border-[#272727] rounded-2xl p-6 transition-base hover:border-neutral-600">
+          <div class="w-10 h-10 rounded-lg bg-[#272727] flex items-center justify-center text-amber-400 mb-4">
+            <i class="ph ph-shield-check text-2xl"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Grade 8.8 &amp; 10.9 Certification</h4>
+          <p class="text-xs text-neutral-400 leading-relaxed">High tensile structural bolts subjected to rigorous torque and shear stress verification with test certificates upon request.</p>
+        </div>
+
+        <div class="bg-[#1F1F1F] border border-[#272727] rounded-2xl p-6 transition-base hover:border-neutral-600">
+          <div class="w-10 h-10 rounded-lg bg-[#272727] flex items-center justify-center text-emerald-400 mb-4">
+            <i class="ph ph-drop-half-bottom text-2xl"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Marine Grade SS 304 &amp; 316</h4>
+          <p class="text-xs text-neutral-400 leading-relaxed">Superior corrosion resistance for coastal projects, chemical processing plants, and architectural facade applications.</p>
+        </div>
+
+        <div class="bg-[#1F1F1F] border border-[#272727] rounded-2xl p-6 transition-base hover:border-neutral-600">
+          <div class="w-10 h-10 rounded-lg bg-[#272727] flex items-center justify-center text-amber-400 mb-4">
+            <i class="ph ph-clock-countdown text-2xl"></i>
+          </div>
+          <h4 class="text-base font-bold text-white mb-2">Instant WhatsApp RFQ Pipeline</h4>
+          <p class="text-xs text-neutral-400 leading-relaxed">Bypass call delays. Structured bill-of-materials sent directly to Amar Traders sales desk for immediate fulfillment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (A2 Requirement) -->
+  <section id="faq" class="py-16 px-4 max-w-3xl mx-auto w-full">
+    <div class="text-center mb-10">
+      <h3 class="text-2xl font-bold tracking-tight text-white mb-2">Frequently Asked Questions</h3>
+      <p class="text-xs text-neutral-400">Commercial terms, dispatch schedules, and minimum orders</p>
+    </div>
+
+    <div class="space-y-3">
+      <div class="bg-[#181818] border border-[#272727] rounded-xl p-4">
+        <h4 class="text-sm font-semibold text-white mb-1">What is the minimum order quantity for wholesale pricing?</h4>
+        <p class="text-xs text-neutral-400">Standard hex bolts are supplied in standard packaging of 250 to 1000 pieces depending on diameter. Foundation and structural anchor bolts are supplied in quantities from 25 pieces upwards.</p>
+      </div>
+      <div class="bg-[#181818] border border-[#272727] rounded-xl p-4">
+        <h4 class="text-sm font-semibold text-white mb-1">How fast is delivery across Chennai and Tamil Nadu?</h4>
+        <p class="text-xs text-neutral-400">In-stock items are ready for same-day local collection or dispatched within 24 hours via transport across Tamil Nadu, Bangalore, and Andhra Pradesh.</p>
+      </div>
+      <div class="bg-[#181818] border border-[#272727] rounded-xl p-4">
+        <h4 class="text-sm font-semibold text-white mb-1">Do you provide GST Tax Invoices and MTC?</h4>
+        <p class="text-xs text-neutral-400">Yes, every commercial order includes an official GST tax invoice (HSN 7318 at 18%) and Mill Test Certificates for structural HT and Stainless Steel batches.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart / Proforma Quotation Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-base">
+    <div class="bg-[#181818] border border-[#272727] rounded-2xl max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
       <!-- Modal Header -->
-      <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-file-invoice"></i>
+      <div class="p-4 border-b border-[#272727] flex items-center justify-between bg-[#1F1F1F]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+            <i class="ph ph-receipt text-lg"></i>
           </div>
           <div>
-            <h3 class="font-bold text-white text-base">GST Proforma Quote Builder</h3>
-            <p class="text-xs text-slate-400">Amar Traders B2B Wholesale Portal</p>
+            <h3 class="font-bold text-white text-sm">GST Proforma Quote</h3>
+            <p class="text-[11px] text-neutral-400">Amar Traders Wholesale Desk &bull; HSN 7318</p>
           </div>
         </div>
-        <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white text-lg p-1">
-          <i class="fa-solid fa-xmark"></i>
+        <button onclick="toggleCartModal(false)" class="w-7 h-7 rounded-full bg-[#272727] text-neutral-400 hover:text-white flex items-center justify-center transition-base">
+          <i class="ph ph-x text-sm"></i>
         </button>
       </div>
 
       <!-- Items List -->
-      <div id="cart-items" class="p-4 overflow-y-auto space-y-3 flex-grow max-h-72">
+      <div id="cart-items" class="p-4 overflow-y-auto space-y-2.5 flex-grow max-h-72">
         <!-- Rendered items -->
       </div>
 
       <!-- Bill Breakdown -->
-      <div class="p-4 border-t border-slate-800 bg-slate-950/60 space-y-2">
-        <div class="flex justify-between text-xs text-slate-400">
-          <span>Subtotal (Excl. Tax)</span>
-          <span id="bill-subtotal" class="mono font-semibold text-slate-200">₹0.00</span>
+      <div class="p-4 border-t border-[#272727] bg-[#131209] space-y-2">
+        <div class="flex justify-between text-xs text-neutral-400">
+          <span>Subtotal (Excl. GST)</span>
+          <span id="bill-subtotal" class="font-mono font-semibold text-neutral-200">₹0.00</span>
         </div>
-        <div class="flex justify-between text-xs text-slate-400">
-          <span>GST (18% HSN 7318)</span>
-          <span id="bill-gst" class="mono font-semibold text-slate-200">₹0.00</span>
+        <div class="flex justify-between text-xs text-neutral-400">
+          <span>GST (18% Applicable)</span>
+          <span id="bill-gst" class="font-mono font-semibold text-neutral-200">₹0.00</span>
         </div>
-        <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-slate-800">
-          <span>Total Proforma Value</span>
-          <span id="bill-total" class="mono text-amber-400 text-base">₹0.00</span>
-        </div>
-
-        <!-- Buyer Info Fields -->
-        <div class="pt-3 grid grid-cols-2 gap-2">
-          <input id="contractor-name" type="text" placeholder="Your Firm / Contractor Name" class="col-span-2 sm:col-span-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
-          <input id="contractor-site" type="text" placeholder="Delivery Location / Site (Chennai)" class="col-span-2 sm:col-span-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+        <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-[#272727]">
+          <span>Estimated Proforma Total</span>
+          <span id="bill-total" class="font-mono text-amber-400 text-base font-bold">₹0.00</span>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="pt-2 flex flex-col sm:flex-row gap-2">
-          <button onclick="sendWhatsAppOrder()" class="flex-1 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
+        <!-- Inputs for buyer -->
+        <div class="pt-2 grid grid-cols-2 gap-2">
+          <input id="contractor-name" type="text" placeholder="Firm or Contractor Name" class="col-span-2 sm:col-span-1 bg-[#181818] border border-[#272727] rounded-lg px-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-amber-400">
+          <input id="contractor-site" type="text" placeholder="Site / City (e.g. Chennai)" class="col-span-2 sm:col-span-1 bg-[#181818] border border-[#272727] rounded-lg px-3 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-amber-400">
+        </div>
+
+        <!-- Action Button -->
+        <div class="pt-2">
+          <button onclick="dispatchWhatsAppRFQ()" class="w-full bg-[#10B981] hover:bg-[#059669] text-white font-semibold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/20 transition-base active:scale-[0.98]">
+            <i class="ph ph-whatsapp-logo text-base"></i>
             <span>Submit RFQ on WhatsApp (+91 90032 12346)</span>
           </button>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- Sticky Mobile Cart Bar -->
-  <div id="mobile-cart-bar" class="sm:hidden fixed bottom-0 left-0 right-0 bg-slate-900/95 border-t border-slate-800 p-3 flex items-center justify-between z-40 backdrop-blur">
-    <div>
-      <div class="text-[11px] text-slate-400">Total Estimate</div>
-      <div id="mobile-total" class="font-bold text-amber-400 text-sm mono">₹0.00</div>
+  <!-- Footer (B10 Requirements) -->
+  <footer class="border-t border-[#272727] bg-[#181818] py-8 text-center text-xs text-neutral-500">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="font-medium text-neutral-400">Amar Traders &bull; Chennai Wholesale Fasteners</p>
+        <p class="text-[11px] text-neutral-600 mt-0.5">Phone: +91 90032 12346 &bull; Email: amartradersbolt@gmail.com</p>
+      </div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <span class="text-neutral-600">Built for Amar Traders by <strong>Gukan R</strong></span>
+        <a href="#hero" class="text-neutral-400 hover:text-white transition-base">Back to Top</a>
+      </div>
     </div>
-    <button onclick="toggleCartModal()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2">
-      <i class="fa-solid fa-receipt"></i> View Quote (<span id="mobile-count">0</span>)
-    </button>
-  </div>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500">
-    <p>Custom Digital B2B Architecture for <strong>Amar Traders</strong> (Chennai) • Designed by <strong>Gukan R</strong></p>
-    <p class="mt-1">Fast, zero-latency wholesale quoting engine with instant WhatsApp routing.</p>
   </footer>
 
   <script>
-    const products = [
+    // Real Amar Traders Catalog Data
+    const catalog = [
       {
         id: "ms-bolt",
         name: "MS (Mild Steel) Hex Bolt",
-        category: "hex-bolt",
+        category: "hex",
         grade: "Grade 4.6 / IS 1363",
         unit: "piece",
         basePrice: 8.50,
-        hsn: "7318",
         specs: ["M8 x 40mm", "M10 x 50mm", "M12 x 65mm", "M16 x 80mm", "M20 x 100mm"],
         defaultQty: 500,
-        img: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=500&q=80"
       },
       {
         id: "l-foundation",
         name: "L-Type Foundation Bolt",
         category: "foundation",
-        grade: "IS 2062 / Heavy Structural",
+        grade: "IS 2062 Heavy Structural",
         unit: "piece",
         basePrice: 145.00,
-        hsn: "7318",
         specs: ["16mm x 300mm", "20mm x 450mm", "24mm x 600mm", "30mm x 750mm"],
         defaultQty: 50,
-        img: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=500&q=80"
       },
       {
         id: "ht-bolt",
@@ -200,10 +393,9 @@
         grade: "Grade 8.8 / 10.9 Heavy Hex",
         unit: "piece",
         basePrice: 22.00,
-        hsn: "7318",
         specs: ["M10 x 45mm Gr 8.8", "M12 x 50mm Gr 8.8", "M16 x 75mm Gr 10.9", "M20 x 90mm Gr 10.9"],
         defaultQty: 250,
-        img: "https://images.unsplash.com/photo-1618090584176-7132b9911657?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1618090584176-7132b9911657?w=500&q=80"
       },
       {
         id: "ss-bolt",
@@ -212,22 +404,20 @@
         grade: "AISI 304 / 316 Marine Grade",
         unit: "piece",
         basePrice: 38.00,
-        hsn: "7318",
         specs: ["M6 x 25mm SS304", "M8 x 40mm SS304", "M10 x 50mm SS316", "M12 x 65mm SS316"],
         defaultQty: 100,
-        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=500&q=80"
       },
       {
         id: "allen-bolt",
-        name: "Socket Head Allen Cap Bolt",
-        category: "hex-bolt",
+        name: "Socket Head Allen Bolt",
+        category: "hex",
         grade: "Grade 12.9 High Precision",
         unit: "piece",
         basePrice: 16.50,
-        hsn: "7318",
         specs: ["M6 x 20mm", "M8 x 30mm", "M10 x 40mm", "M12 x 50mm"],
         defaultQty: 200,
-        img: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f3?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1541888946425-d0fbb186c5f3?w=500&q=80"
       },
       {
         id: "anchor-bolt",
@@ -236,204 +426,220 @@
         grade: "Heavy Duty Concrete Anchor",
         unit: "piece",
         basePrice: 32.00,
-        hsn: "7318",
         specs: ["M10 x 75mm", "M12 x 100mm", "M16 x 125mm", "M20 x 160mm"],
         defaultQty: 100,
-        img: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=500&q=80"
       },
       {
         id: "hex-nut",
         name: "Heavy Hex Nuts (MS & HT)",
-        category: "nuts-washers",
+        category: "hardware",
         grade: "IS 1364 / Grade 8 & 10",
         unit: "piece",
         basePrice: 4.20,
-        hsn: "7318",
         specs: ["M8 Hex Nut", "M10 Hex Nut", "M12 Hex Nut", "M16 Heavy Nut", "M20 Heavy Nut"],
         defaultQty: 1000,
-        img: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=500&q=80"
       },
       {
         id: "spring-washer",
         name: "Spring & Plain Washers",
-        category: "nuts-washers",
+        category: "hardware",
         grade: "IS 3063 / High Spring Steel",
         unit: "kg",
         basePrice: 185.00,
-        hsn: "7318",
         specs: ["Plain Washer M10 (1kg)", "Plain Washer M12 (1kg)", "Spring Washer M10 (1kg)", "Spring Washer M16 (1kg)"],
         defaultQty: 10,
-        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80"
+        img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&q=80"
       }
     ];
 
     let cart = [];
 
-    function renderProducts(items) {
-      const grid = document.getElementById('product-grid');
+    // Render Product Cards (Apple Nested Radii: Card outer 16px, inner elements 8px)
+    function renderCatalog(items) {
+      const grid = document.getElementById('catalog-grid');
       grid.innerHTML = items.map(p => `
-        <div class="metal-card rounded-xl p-4 flex flex-col justify-between transition-all duration-200">
+        <div class="card-outer bg-[#181818] border border-[#272727] hover:border-neutral-600 flex flex-col justify-between transition-base">
           <div>
-            <div class="relative rounded-lg overflow-hidden h-32 mb-3 bg-slate-800">
-              <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
-              <span class="absolute top-2 left-2 bg-slate-950/80 text-amber-400 font-mono text-[10px] font-bold px-2 py-0.5 rounded border border-amber-500/20">
+            <div class="relative card-inner overflow-hidden h-36 mb-3 bg-[#1F1F1F]">
+              <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-105 transition-base">
+              <span class="absolute top-2 left-2 bg-[#000000]/80 backdrop-blur text-amber-400 font-mono text-[10px] font-bold px-2 py-0.5 rounded border border-neutral-700">
                 ${p.grade}
               </span>
             </div>
-            <h3 class="font-bold text-white text-sm tracking-tight mb-1">${p.name}</h3>
-            <p class="text-[11px] text-slate-400 mb-2">Est. Wholesale: <strong class="text-amber-400 mono">₹${p.basePrice.toFixed(2)}</strong> / ${p.unit}</p>
+            
+            <h4 class="font-bold text-white text-sm tracking-tight mb-1">${p.name}</h4>
+            <p class="text-xs text-neutral-400 mb-3">Wholesale Est: <span class="text-amber-400 font-mono font-bold">₹${p.basePrice.toFixed(2)}</span> / ${p.unit}</p>
 
-            <div class="space-y-2 mb-3">
+            <div class="space-y-2 mb-4">
               <div>
-                <label class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Size / Spec:</label>
-                <select id="spec-${p.id}" class="w-full bg-slate-900 border border-slate-700 rounded-md text-xs py-1.5 px-2 text-slate-200 focus:outline-none focus:border-amber-500">
+                <label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1">Standard Size:</label>
+                <select id="spec-${p.id}" class="w-full bg-[#1F1F1F] border border-[#272727] rounded-lg text-xs py-1.5 px-2 text-neutral-200 focus:outline-none focus:border-amber-400">
                   ${p.specs.map(s => `<option value="${s}">${s}</option>`).join('')}
                 </select>
               </div>
               <div>
-                <label class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Quantity (${p.unit}s):</label>
-                <input id="qty-${p.id}" type="number" min="1" value="${p.defaultQty}" class="w-full bg-slate-900 border border-slate-700 rounded-md text-xs py-1.5 px-2 text-slate-200 mono font-bold focus:outline-none focus:border-amber-500">
+                <label class="text-[10px] uppercase font-bold text-neutral-400 block mb-1">Order Quantity (${p.unit}s):</label>
+                <input id="qty-${p.id}" type="number" min="1" value="${p.defaultQty}" class="w-full bg-[#1F1F1F] border border-[#272727] rounded-lg text-xs py-1.5 px-2 text-white font-mono font-bold focus:outline-none focus:border-amber-400">
               </div>
             </div>
           </div>
 
-          <button onclick="addToCart('${p.id}')" class="w-full bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-bold text-xs py-2 rounded-lg border border-slate-700 hover:border-amber-500 transition-all flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-plus text-[10px]"></i> Add to RFQ
+          <button onclick="addToCart('${p.id}')" class="w-full bg-[#272727] hover:bg-[#F59E0B] hover:text-black text-white font-semibold text-xs py-2 rounded-lg transition-base flex items-center justify-center gap-1.5 active:scale-[0.98]">
+            <i class="ph ph-plus text-xs"></i>
+            <span>Add to RFQ</span>
           </button>
         </div>
       `).join('');
     }
 
-    function filterCategory(cat) {
-      document.querySelectorAll('.cat-btn').forEach(b => {
-        b.classList.remove('bg-amber-500', 'text-slate-950', 'active');
-        b.classList.add('bg-slate-800', 'text-slate-300');
+    function filterItems(category) {
+      document.querySelectorAll('.cat-pill').forEach(pill => {
+        pill.classList.remove('bg-[#F59E0B]', 'text-black', 'active');
+        pill.classList.add('bg-[#181818]', 'text-neutral-300');
       });
-      event.target.classList.remove('bg-slate-800', 'text-slate-300');
-      event.target.classList.add('bg-amber-500', 'text-slate-950', 'active');
+      event.target.classList.remove('bg-[#181818]', 'text-neutral-300');
+      event.target.classList.add('bg-[#F59E0B]', 'text-black', 'active');
 
-      if (cat === 'all') {
-        renderProducts(products);
+      if (category === 'all') {
+        renderCatalog(catalog);
       } else {
-        renderProducts(products.filter(p => p.category === cat));
+        renderCatalog(catalog.filter(c => c.category === category));
       }
     }
 
     function addToCart(productId) {
-      const p = products.find(x => x.id === productId);
+      const item = catalog.find(x => x.id === productId);
       const spec = document.getElementById(`spec-${productId}`).value;
       const qty = parseInt(document.getElementById(`qty-${productId}`).value) || 1;
 
-      const existing = cart.find(item => item.id === productId && item.spec === spec);
+      const existing = cart.find(c => c.id === productId && c.spec === spec);
       if (existing) {
         existing.qty += qty;
       } else {
         cart.push({
-          id: p.id,
-          name: p.name,
+          id: item.id,
+          name: item.name,
           spec: spec,
           qty: qty,
-          unit: p.unit,
-          unitPrice: p.basePrice,
-          total: qty * p.basePrice
+          unit: item.unit,
+          unitPrice: item.basePrice
         });
       }
 
-      updateCartUI();
-      // small feedback animation
+      updateCartState();
       toggleCartModal(true);
     }
 
-    function removeFromCart(index) {
+    function removeCartItem(index) {
       cart.splice(index, 1);
-      updateCartUI();
+      updateCartState();
     }
 
-    function updateCartUI() {
-      const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
-      document.getElementById('cart-badge').textContent = cart.length;
-      document.getElementById('mobile-count').textContent = cart.length;
+    function updateCartState() {
+      document.getElementById('cart-counter').textContent = cart.length;
 
-      const subtotal = cart.reduce((acc, item) => acc + (item.qty * item.unitPrice), 0);
+      const subtotal = cart.reduce((acc, c) => acc + (c.qty * c.unitPrice), 0);
       const gst = subtotal * 0.18;
       const grandTotal = subtotal + gst;
 
       document.getElementById('bill-subtotal').textContent = '₹' + subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
       document.getElementById('bill-gst').textContent = '₹' + gst.toLocaleString('en-IN', { minimumFractionDigits: 2 });
       document.getElementById('bill-total').textContent = '₹' + grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
-      document.getElementById('mobile-total').textContent = '₹' + grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
 
       const container = document.getElementById('cart-items');
       if (cart.length === 0) {
         container.innerHTML = `
-          <div class="text-center py-8 text-slate-500 text-xs">
-            <i class="fa-solid fa-box-open text-3xl mb-2 block"></i>
-            Your quotation cart is empty. Select fasteners from the catalog above.
+          <div class="text-center py-8 text-neutral-500 text-xs">
+            <i class="ph ph-package text-3xl mb-2 block text-neutral-600"></i>
+            Your quote cart is empty. Select fasteners from the catalog.
           </div>
         `;
         return;
       }
 
-      container.innerHTML = cart.map((item, idx) => `
-        <div class="bg-slate-800/80 border border-slate-700 p-2.5 rounded-lg flex items-center justify-between text-xs">
+      container.innerHTML = cart.map((c, i) => `
+        <div class="bg-[#1F1F1F] border border-[#272727] p-3 rounded-xl flex items-center justify-between text-xs">
           <div>
-            <div class="font-bold text-white">${item.name}</div>
-            <div class="text-[11px] text-amber-400 font-mono">${item.spec} &bull; ${item.qty} ${item.unit}s @ ₹${item.unitPrice.toFixed(2)}</div>
+            <div class="font-bold text-white">${c.name}</div>
+            <div class="text-[11px] text-amber-400 font-mono">${c.spec} &bull; ${c.qty} ${c.unit}s @ ₹${c.unitPrice.toFixed(2)}</div>
           </div>
           <div class="flex items-center gap-3">
-            <div class="font-bold mono text-slate-200">₹${(item.qty * item.unitPrice).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
-            <button onclick="removeFromCart(${idx})" class="text-red-400 hover:text-red-300 p-1">
-              <i class="fa-solid fa-trash-can"></i>
+            <div class="font-bold font-mono text-neutral-200">₹${(c.qty * c.unitPrice).toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
+            <button onclick="removeCartItem(${i})" class="text-neutral-500 hover:text-red-400 p-1 transition-base">
+              <i class="ph ph-trash text-sm"></i>
             </button>
           </div>
         </div>
       `).join('');
     }
 
-    function toggleCartModal(forceOpen = false) {
+    function toggleCartModal(open) {
       const modal = document.getElementById('cart-modal');
-      if (forceOpen) {
+      if (open) {
         modal.classList.remove('hidden');
       } else {
-        modal.classList.toggle('hidden');
+        modal.classList.add('hidden');
       }
     }
 
-    function sendWhatsAppOrder() {
-      if (cart.length === 0) {
-        alert("Please add at least one fastener item to generate quotation.");
-        return;
-      }
+    function dispatchWhatsAppRFQ() {
+      if (cart.length === 0) return;
 
-      const contractor = document.getElementById('contractor-name').value.trim() || "Contractor Inquiry";
+      const firm = document.getElementById('contractor-name').value.trim() || "Contractor RFQ";
       const site = document.getElementById('contractor-site').value.trim() || "Chennai";
 
-      const subtotal = cart.reduce((acc, item) => acc + (item.qty * item.unitPrice), 0);
+      const subtotal = cart.reduce((acc, c) => acc + (c.qty * c.unitPrice), 0);
       const gst = subtotal * 0.18;
       const total = subtotal + gst;
 
-      let msg = `*RFQ / WHOLESALE ORDER - AMAR TRADERS CHENNAI*\n`;
-      msg += `Firm / Buyer: ${contractor}\n`;
-      msg += `Delivery Site: ${site}\n`;
-      msg += `------------------------------------\n`;
-      cart.forEach((c, i) => {
-        msg += `${i+1}. ${c.name} (${c.spec})\n   Qty: ${c.qty} ${c.unit}s @ ₹${c.unitPrice.toFixed(2)} = ₹${(c.qty * c.unitPrice).toFixed(2)}\n`;
+      let text = `*WHOLESALE RFQ - AMAR TRADERS CHENNAI*\n`;
+      text += `Firm / Buyer: ${firm}\n`;
+      text += `Site / Location: ${site}\n`;
+      text += `------------------------------------\n`;
+      cart.forEach((c, idx) => {
+        text += `${idx+1}. ${c.name} (${c.spec})\n   Qty: ${c.qty} ${c.unit}s @ ₹${c.unitPrice.toFixed(2)} = ₹${(c.qty * c.unitPrice).toFixed(2)}\n`;
       });
-      msg += `------------------------------------\n`;
-      msg += `Subtotal: ₹${subtotal.toFixed(2)}\n`;
-      msg += `GST (18% HSN 7318): ₹${gst.toFixed(2)}\n`;
-      msg += `*Estimated Proforma Total: ₹${total.toFixed(2)}*\n`;
-      msg += `------------------------------------\n`;
-      msg += `Please confirm stock availability, delivery schedule, and official proforma invoice.`;
+      text += `------------------------------------\n`;
+      text += `Subtotal: ₹${subtotal.toFixed(2)}\n`;
+      text += `GST (18% HSN 7318): ₹${gst.toFixed(2)}\n`;
+      text += `*Estimated Total: ₹${total.toFixed(2)}*\n`;
+      text += `------------------------------------\n`;
+      text += `Please confirm stock availability and dispatch schedule.`;
 
-      const targetPhone = "919003212346"; // Amar Traders
-      const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`;
-      window.open(waUrl, '_blank');
+      const targetPhone = "919003212346";
+      window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(text)}`, '_blank');
     }
 
-    // Initial render
-    renderProducts(products);
-    updateCartUI();
+    // Mandatory Tagline Reveal Word Animation (B11)
+    function setupTaglineReveal() {
+      const container = document.getElementById('reveal-text');
+      const text = container.innerText;
+      const words = text.split(/\s+/);
+      container.innerHTML = words.map(w => `<span class="reveal-word inline-block mr-1.5">${w}</span>`).join('');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const wordElements = container.querySelectorAll('.reveal-word');
+            wordElements.forEach((el, index) => {
+              setTimeout(() => {
+                el.classList.add('active');
+              }, index * 40); // 40ms stagger
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(container);
+    }
+
+    // Initialize
+    renderCatalog(catalog);
+    updateCartState();
+    setupTaglineReveal();
   </script>
 </body>
 </html>
